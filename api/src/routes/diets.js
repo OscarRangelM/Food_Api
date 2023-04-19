@@ -1,11 +1,8 @@
 const { Router } = require('express');
-
-
+const { getDiets } = require('../handlers/dietsHandler.js');
 
 const router = Router();
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
+router.get("/", getDiets);
 
 module.exports = router;
