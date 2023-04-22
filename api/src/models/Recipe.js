@@ -9,7 +9,7 @@ Paso a paso. *
 
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('recipe', {
+  sequelize.define('Recipe', {
     id: {
       type: DataTypes.UUID,
       allowNull: false,
@@ -36,5 +36,7 @@ module.exports = (sequelize) => {
       type: DataTypes.JSON,
       allowNull: false,
     }
+  },{
+    timestamps: false,
   });
 };
