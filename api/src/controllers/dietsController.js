@@ -7,7 +7,7 @@ const getDietsController = async () =>{
     const dietsDb = await Diets.findAll();
     if(dietsDb.length > 1) return dietsDb;
 
-    const dietsApi =  await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`);
+    const dietsApi =  await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
     const dataDietsApi = dietsApi.data.results;
 
     const listDiets = dataDietsApi.map(res => res.diets);
