@@ -22,7 +22,7 @@ const getDietsController = async () =>{
         return allDiets.indexOf(item) === index;
     })
 
-    console.log(result);
+    // console.log(result);
     
     result.map(async (e) => {
         let newDiet = await Diets.create({
