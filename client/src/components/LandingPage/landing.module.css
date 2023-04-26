@@ -1,0 +1,32 @@
+.divLanding{
+    height: 100vh;
+    /* background-image: url('../../image/pattern.svg');
+    background-size: cover; */
+    backdrop-filter: blur(10px);
+}
+
+.divCover{
+    backdrop-filter: blur(3px);
+    height: 100vh;
+    color: #193948;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.divCover > h1 {
+    filter: drop-shadow(2px 2px 3px #ffff);
+}
+
+.buttonLanding{
+    height: 40px;
+    width: 80px;
+    background-color: #193948;
+    color: #FCDC73;
+    font-weight: bolder;
+    border-radius: 5px;
+}
