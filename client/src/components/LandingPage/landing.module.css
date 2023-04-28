@@ -1,12 +1,16 @@
-.divLanding{
+*{
+    font-family: 'Roboto';
+}
+
+.divLanding {
     height: 100vh;
-    /* background-image: url('../../image/pattern.svg');
-    background-size: cover; */
+    background-image: url('../../Image/Default_platillos_0.jpg');
+    background-size: cover;
     backdrop-filter: blur(10px);
 }
 
-.divCover{
-    backdrop-filter: blur(3px);
+.divCover {
+    backdrop-filter: blur(2px);
     height: 100vh;
     color: #193948;
     display: flex;
@@ -18,14 +22,20 @@
     font-size: larger;
 }
 
-.divCover > h1 {
-    filter: drop-shadow(2px 2px 3px #ffff);
+.divCover>h1 {
+    /* background-color: #552818; */
+    background: url('../../Image/superficie-textura-madera-oscura_24836-84.avif');
+    padding: 5px;
+    border-radius: 5px;
+    border: 5px solid #47290c;
+    color: white;
+
 }
 
-.buttonLanding{
+.buttonLanding {
     height: 40px;
     width: 80px;
-    background-color: #193948;
+    background-color: #47290c;
     color: #FCDC73;
     font-weight: bolder;
     border-radius: 5px;
