@@ -28,10 +28,10 @@ const getRecipeById = async (req, res) => {
 }
 
 const postRecipe = async (req, res) => {
-    const { name, image, summary, healthScore, analyzedInstructions } = req.body;
+    const { name, image, summary, healthScore, instructions, diets } = req.body;
     try {
-        if (!name || !image || !summary || !healthScore || !analyzedInstructions) return res.status(401).json(`Data are needed for create this recipe`);
-        const newRecipe = await createRecipe({ name, image, summary, healthScore, analyzedInstructions });
+        if (!name || !image || !summary || !healthScore || !instructions || !diets) return res.status(401).json(`Data are needed for create this recipe`);
+        const newRecipe = await createRecipe({ name, image, summary, healthScore, instructions, diets });
         res.status(200).send(newRecipe);
     } catch (error) {
         res.status(404).json({ error: `Error postRecipe ${error.message}` });

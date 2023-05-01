@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     instructions: {
-      type: DataTypes.JSON,
+      type: DataTypes.TEXT,
       allowNull: false,
     }
   },{
