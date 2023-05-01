@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    analyzedInstructions: {
+    instructions: {
       type: DataTypes.JSON,
       allowNull: false,
     }
