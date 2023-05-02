@@ -6,7 +6,14 @@ import Card from '../Card/Card.jsx';
 export default function Cards() {
     return (
         <div className={styles.divCards}>
-            <p>Aqui vamos a mostrar todas las tarjetas con las recetas</p>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
             <Card />
         </div>
     );
