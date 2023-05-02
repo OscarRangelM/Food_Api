@@ -1,15 +1,16 @@
 import axios from 'axios';
 
-export const GET_RECIPE_DB = 'GET_RECIPE_DB'; 
-export const GET_RECIPE_API = 'GET_RECIPE_API'; 
-export const GET_DIETS = 'GET_DIETS'; 
-export const CREATE_RECIPE = 'CREATE_RECIPE'; 
-export const ADD_FAVORITE = 'ADD_FAVORITE'; 
-export const DELETE_FAVORITE = 'DELETE_FAVORITE'; 
-export const SEARCH_RECIPE = 'SEARCH_RECIPE'; 
-export const SEARCH_RECIPE_BY_ID = 'SEARCH_RECIPE_BY_ID'; 
-export const FILTER_AZ = 'FILTER_AZ'; 
-export const FILTER_SCORE = 'FILTER_SCORE'; 
+export const GET_RECIPE_DB = 'GET_RECIPE_DB';
+export const GET_RECIPE_API = 'GET_RECIPE_API';
+export const GET_DIETS = 'GET_DIETS';
+export const CREATE_RECIPE = 'CREATE_RECIPE';
+export const ADD_FAVORITE = 'ADD_FAVORITE';
+export const DELETE_FAVORITE = 'DELETE_FAVORITE';
+export const SEARCH_RECIPE = 'SEARCH_RECIPE';
+export const SEARCH_RECIPE_BY_ID = 'SEARCH_RECIPE_BY_ID';
+export const FILTER_AZ = 'FILTER_AZ';
+export const FILTER_SCORE = 'FILTER_SCORE';
+export const RENDER_RECIPE = 'RENDER_RECIPE';
 
 export const getRecipeApi = () => {
     return async (dispatch) => {
@@ -144,7 +145,7 @@ export const filterAz = (recipe, value) => {
     return async (dispatch) => {
         try {
             let recipeAz = await recipe.sort((x, y) => x.name.localCompare(y.name));
-            if(value) {
+            if (value) {
                 return dispatch({
                     type: FILTER_AZ,
                     payload: recipeAz,
@@ -166,7 +167,7 @@ export const filterScore = (recipe, value) => {
     return async (dispatch) => {
         try {
             let recipeScore = recipe.sort((x, y) => x.healthScore - y.healthScore);
-            if(value){
+            if (value) {
                 return dispatch({
                     type: FILTER_SCORE,
                     payload: recipeScore
@@ -182,4 +183,23 @@ export const filterScore = (recipe, value) => {
             console.log(`Error filterScore, ${error}`);
         }
     };
+};
+
+export const renderRecipeCards = (recipe, number) => {
+    return async (dispatch) => {
+        try {
+            // pendiente, aqui vamos a mandar a rendereizar solo las cards que vamos a utilizar.
+            let renderArr = [];
+            let initialNumber = number * 9;
+            for(let i = initialNumber - 9; i < initialNumber ; i++){
+                renderArr.push(recipe[i]);
+            }
+            return dispatch({
+                type: RENDER_RECIPE,
+                payload: renderArr,
+            })
+        } catch (error) {
+            console.log(`Error renderRecipeCards, ${error}`);
+        }
+    }
 };
