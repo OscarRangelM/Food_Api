@@ -185,10 +185,9 @@ export const filterScore = (recipe, value) => {
     };
 };
 
-export const renderRecipeCards = (recipe, number) => {
+export const renderRecipeCards = (recipe, number=1) => {
     return async (dispatch) => {
         try {
-            // pendiente, aqui vamos a mandar a rendereizar solo las cards que vamos a utilizar.
             let renderArr = [];
             let initialNumber = number * 9;
             for(let i = initialNumber - 9; i < initialNumber ; i++){

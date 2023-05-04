@@ -1,6 +1,18 @@
 .divCard{
     border: 2px solid black;
     max-width: 155px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px 15px;
+    position: relative;
+}
+
+.favButton{
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 
 .recipeImg{
