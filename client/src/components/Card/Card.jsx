@@ -23,8 +23,8 @@ export default function Card(props) {
     }
 
     useEffect(() => {
-        allFavorites.forEach(fav =>{
-            if(fav.id === props.id) {
+        allFavorites.forEach(fav => {
+            if (fav.id === props.id) {
                 setFavorite(true);
             }
         });
@@ -36,8 +36,8 @@ export default function Card(props) {
         <div className={styles.divCard}>
             {
                 favorite ?
-                    (<button onClick={handleFavorite} className = {styles.favButton} >⭐</button>):
-                    (<button onClick={handleFavorite} className = {styles.favButton}>☆</button>)
+                    (<button onClick={handleFavorite} className={styles.favButton} >⭐</button>) :
+                    (<button onClick={handleFavorite} className={styles.favButton}>☆</button>)
             }
             <img src={props.image} alt={props.name} className={styles.recipeImg} />
             <h4 className={styles.recipeName} >{props.name}</h4>
@@ -45,7 +45,8 @@ export default function Card(props) {
             <div className={styles.containerDiets} >
                 {dietsProps?.map(res => {
                     return (<p className={styles.diets} key={res.id} >{res}</p>);
-                })}
+                })
+                }
             </div>
             <NavLink to={`/detail/${props.id}`} className={styles.bttnDetails}>
                 <p>More details</p>
