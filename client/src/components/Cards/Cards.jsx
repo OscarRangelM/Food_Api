@@ -1,16 +1,28 @@
 import styles from './cards.module.css';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect }from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 import Card from '../Card/Card.jsx';
 
+import { renderRecipeCards } from '../../redux/actions/index.js';
+
 export default function Cards() {
 
-    const recipes = useSelector(state => state.renderRecipe);
+    const dispatch = useDispatch();
 
+    const recipe = useSelector(state => state.recipe);
+    
+    useEffect(() => {
+        dispatch(renderRecipeCards(recipe));
+    },[dispatch, recipe]);
+    // console.log(render);
+    
+    const render = useSelector(state => state.renderRecipe);
+    // console.log(render?.length);
     return (
         <div className={styles.divCards}>
-            {!(recipes.length > 0) ? <p className={styles.noDogs} >Oops! there is no dogs around here</p> : recipes.map(c => {
+            {!(render?.length > 0) ? <p className={styles.noDogs} >Oops! there is no dogs around here</p> : render.map(c => {
                 return (<Card 
                     key={c.id}
                     id={c.id}

@@ -37,7 +37,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_DIETS:
             return {
                 ...state,
-                recipe: action.payload,
+                diets: action.payload,
             }
 
         case CREATE_RECIPE:

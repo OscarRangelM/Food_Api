@@ -44,7 +44,7 @@ export default function Card(props) {
             <h5 className={styles.recipeDiets} >Diets:</h5>
             <div className={styles.containerDiets} >
                 {dietsProps?.map(res => {
-                    return (<p className={styles.diets} key={res.id} >{res}</p>);
+                    return (<p className={styles.diets} >{res}</p>);
                 })
                 }
             </div>

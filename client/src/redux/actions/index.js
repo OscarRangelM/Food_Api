@@ -15,17 +15,18 @@ export const RENDER_RECIPE = 'RENDER_RECIPE';
 export const getRecipeApi = () => {
     return async (dispatch) => {
         try {
+            console.log("Se ejecuto la funcion getRecipeDiets");
             let recipeApi = [];
             const recipeApiGet = await axios.get('http://localhost:3001/recipes');
-            const recipeApiData = recipeApi.data;
+            const recipeApiData = recipeApiGet.data;
             // eslint-disable-next-line array-callback-return
             recipeApiData?.map((e) => {
-                if (!isNaN(e.id)) recipeApiGet.push(e);
+                if (!isNaN(e.id)) recipeApi.push(e);
             });
-
+            // console.log(recipeApiData);
             return dispatch({
                 type: GET_RECIPE_API,
-                payload: recipeApiGet,
+                payload: recipeApi,
             })
         } catch (error) {
             console.log(`Error getDogsApi, ${error}`)
@@ -57,9 +58,10 @@ export const getRecipeDB = () => {
 export const getDiets = () => {
     return async (dispatch) => {
         try {
+            console.log("Se ejecuto la funcion diets")
             const dietsGet = await axios.get('http://localhost:3001/diets');
             const dietsData = dietsGet.data;
-
+            // console.log(dietsData);
             return dispatch({
                 type: GET_DIETS,
                 payload: dietsData,
@@ -188,11 +190,16 @@ export const filterScore = (recipe, value) => {
 export const renderRecipeCards = (recipe, number=1) => {
     return async (dispatch) => {
         try {
+            const recipeAsync = await recipe;
+            console.log("Se ejecuto el render");
             let renderArr = [];
             let initialNumber = number * 9;
-            for(let i = initialNumber - 9; i < initialNumber ; i++){
-                renderArr.push(recipe[i]);
+            if(recipeAsync.length > 0) {
+                for(let i = initialNumber - 9; i < initialNumber ; i++){
+                    renderArr.push(recipeAsync[i]);
+                }
             }
+            // console.log(renderArr);
             return dispatch({
                 type: RENDER_RECIPE,
                 payload: renderArr,
