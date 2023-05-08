@@ -135,7 +135,7 @@ export const searchRecipeById = (id) => {
 
             return dispatch({
                 type: SEARCH_RECIPE_BY_ID,
-                payload: recipeData,
+                payload: recipeData[0],
             })
         } catch (error) {
             console.log(`Error searchRecipeById, ${error}`);

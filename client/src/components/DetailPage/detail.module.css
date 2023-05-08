@@ -1,0 +1,14 @@
+.cardDetail{
+    background-color: red;
+    height: 80vh;
+}
+
+.detailImg{
+    width: 300px;
+}
+
+.sectionInfoDetial{
+    background-color: blue;
+    height: 20vh;
+    color: white;
+}
