@@ -1,5 +1,5 @@
 import styles from './cards.module.css';
-import React, { useEffect }from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useSelector } from 'react-redux';
 
@@ -22,7 +22,7 @@ export default function Cards() {
     // console.log(render?.length);
     return (
         <div className={styles.divCards}>
-            {!(render?.length > 0) ? <p className={styles.noDogs} >Oops! there is no dogs around here</p> : render.map(c => {
+            {!(render?.length > 0) ? <p className={styles.noDogs} >Oops! there is no recipe around here</p> : render.map(c => {
                 return (<Card 
                     key={c.id}
                     id={c.id}
