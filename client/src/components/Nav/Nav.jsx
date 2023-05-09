@@ -16,9 +16,7 @@ export default function Nav() {
     const [searchRecipeState, setSearchRecipeState] = useState(false);
     const [recipeInput, setRecipeInput] = useState('');
     const [healthScoreFirst, setHealthScoreFirst] = useState(false);
-    const [healthScoreSecond, setHealthScoreSecond] = useState(false);
     const [orderhandleAZFirts, setOrderhandleAZFirts] = useState(false);
-    const [orderhandleAZSecond, setOrderhandleAZSecond] = useState(true);
 
     // Mostramos por datos de la api
     function handleApi() {
@@ -68,47 +66,42 @@ export default function Nav() {
             setHealthScoreFirst(false);
         }
         console.log("HealthScore")
-        
-        // setHealthScoreSecond(true);
     }
 
     useEffect(() => {
         if(healthScoreFirst){
             console.log("primer Handle")
             dispatch(filterScore(recipe,true));
-            // setHealthScoreFirst(false);
-            // setHealthScoreSecond(false);
         }else {
             console.log("Segundo Handle")
             dispatch(filterScore(recipe, false));
-            // setHealthScoreFirst(false);
-            // setHealthScoreSecond(true);
         }
         dispatch(renderRecipeCards(recipe));
-    }, [dispatch, healthScoreFirst, healthScoreSecond, recipe]);
+    }, [dispatch, healthScoreFirst, recipe]);
 
     // Ordenamiento por orden alfabetico
     function handleAZ() {
+        if(!orderhandleAZFirts){
+            setOrderhandleAZFirts(true);
+        }else{
+            setOrderhandleAZFirts(false);
+        }
         console.log("handleAZ")
-        setOrderhandleAZFirts(true);
-        // setOrderhandleAZSecond(true);
     }
 
-    // console.log(recipe);
     useEffect(() => {
-        if(orderhandleAZFirts && orderhandleAZSecond){
+        if(orderhandleAZFirts){
             console.log("primer Handle")
             dispatch(filterAz(recipe,true));
-            setOrderhandleAZFirts(false);
-            setOrderhandleAZSecond(false);
-        }else if(!orderhandleAZSecond){
+            dispatch(renderRecipeCards(recipe));
+        }else{
             console.log("Segundo Handle")
             dispatch(filterAz(recipe, false));
-            setOrderhandleAZFirts(false);
-            setOrderhandleAZSecond(true);
+            dispatch(renderRecipeCards(recipe));
         }
-        dispatch(renderRecipeCards(recipe));
-    }, [dispatch, orderhandleAZFirts, orderhandleAZSecond, recipe]);
+        
+    }, [dispatch, orderhandleAZFirts, recipe]);
+    // console.log(recipe);
 
     return (
         <div className={styles.divNav}>

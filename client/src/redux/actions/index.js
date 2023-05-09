@@ -147,7 +147,7 @@ export const filterAz = (recipe, value) => {
     return async (dispatch) => {
         try {
             const recipeAsync = await recipe;
-            let recipeAz = await recipeAsync.sort((x, y) => x.name.localeCompare(y.name));
+            let recipeAz = recipeAsync.sort((x, y) => x.name.localeCompare(y.name));
             if (value) {
                 return dispatch({
                     type: FILTER_AZ,
@@ -156,10 +156,10 @@ export const filterAz = (recipe, value) => {
             }
 
             let recipeZa = recipeAz.reverse();
-            return dispatch({
+            return {
                 type: FILTER_AZ,
                 payload: recipeZa,
-            })
+            }
         } catch (error) {
             console.log(`Error filterAz, ${error}`);
         }
