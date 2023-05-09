@@ -31,6 +31,7 @@ export default function Card(props) {
     });
 
     const dietsProps = props.diets;
+    // console.log(props.healthScore)
 
     return (
         <div className={styles.divCard}>
@@ -41,6 +42,7 @@ export default function Card(props) {
             }
             <img src={props.image} alt={props.name} className={styles.recipeImg} />
             <h4 className={styles.recipeName} >{props.name}</h4>
+            <p>healthScore: {props.healthScore}</p>
             <h5 className={styles.recipeDiets} >Diets:</h5>
             <div className={styles.containerDiets} >
                 {dietsProps?.map(res => {

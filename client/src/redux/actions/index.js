@@ -146,7 +146,8 @@ export const searchRecipeById = (id) => {
 export const filterAz = (recipe, value) => {
     return async (dispatch) => {
         try {
-            let recipeAz = await recipe.sort((x, y) => x.name.localCompare(y.name));
+            const recipeAsync = await recipe;
+            let recipeAz = await recipeAsync.sort((x, y) => x.name.localeCompare(y.name));
             if (value) {
                 return dispatch({
                     type: FILTER_AZ,
@@ -166,9 +167,11 @@ export const filterAz = (recipe, value) => {
 };
 
 export const filterScore = (recipe, value) => {
+    // console.log(recipe);
     return async (dispatch) => {
         try {
-            let recipeScore = recipe.sort((x, y) => x.healthScore - y.healthScore);
+            const recipeAsync = await recipe;
+            let recipeScore = recipeAsync.sort((x, y) => x.healthScore - y.healthScore);
             if (value) {
                 return dispatch({
                     type: FILTER_SCORE,
@@ -194,7 +197,7 @@ export const renderRecipeCards = (recipe, number=1) => {
             console.log("Se ejecuto el render");
             let renderArr = [];
             let initialNumber = number * 9;
-            if(recipeAsync.length > 0) {
+            if(recipeAsync?.length > 0) {
                 for(let i = initialNumber - 9; i < initialNumber ; i++){
                     if(typeof(recipeAsync[i]) !== 'undefined') {
                         renderArr.push(recipeAsync[i])

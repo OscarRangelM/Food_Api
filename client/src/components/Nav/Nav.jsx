@@ -3,17 +3,22 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipeApi, getRecipeDB, searchRecipe, filterAz, filterScore } from '../../redux/actions/index.js';
+import { getRecipeApi, getRecipeDB, searchRecipe, filterAz, filterScore, renderRecipeCards } from '../../redux/actions/index.js';
 
 
 export default function Nav() {
 
     const dispatch = useDispatch();
+    const recipe = useSelector(state => state.recipe);
 
     const [dataApi, setDataApi] = useState(false);
     const [dataBase, setDataBase] = useState(false);
     const [searchRecipeState, setSearchRecipeState] = useState(false);
     const [recipeInput, setRecipeInput] = useState('');
+    const [healthScoreFirst, setHealthScoreFirst] = useState(false);
+    const [healthScoreSecond, setHealthScoreSecond] = useState(false);
+    const [orderhandleAZFirts, setOrderhandleAZFirts] = useState(false);
+    const [orderhandleAZSecond, setOrderhandleAZSecond] = useState(true);
 
     // Mostramos por datos de la api
     function handleApi() {
@@ -55,6 +60,56 @@ export default function Nav() {
         }
     }, [dispatch, searchRecipeState , recipeInput]);
 
+    // Ordenamiento de handleHealthScore
+    function handleHealthScore() {
+        if(!healthScoreFirst){
+            setHealthScoreFirst(true);
+        }else{
+            setHealthScoreFirst(false);
+        }
+        console.log("HealthScore")
+        
+        // setHealthScoreSecond(true);
+    }
+
+    useEffect(() => {
+        if(healthScoreFirst){
+            console.log("primer Handle")
+            dispatch(filterScore(recipe,true));
+            // setHealthScoreFirst(false);
+            // setHealthScoreSecond(false);
+        }else {
+            console.log("Segundo Handle")
+            dispatch(filterScore(recipe, false));
+            // setHealthScoreFirst(false);
+            // setHealthScoreSecond(true);
+        }
+        dispatch(renderRecipeCards(recipe));
+    }, [dispatch, healthScoreFirst, healthScoreSecond, recipe]);
+
+    // Ordenamiento por orden alfabetico
+    function handleAZ() {
+        console.log("handleAZ")
+        setOrderhandleAZFirts(true);
+        // setOrderhandleAZSecond(true);
+    }
+
+    // console.log(recipe);
+    useEffect(() => {
+        if(orderhandleAZFirts && orderhandleAZSecond){
+            console.log("primer Handle")
+            dispatch(filterAz(recipe,true));
+            setOrderhandleAZFirts(false);
+            setOrderhandleAZSecond(false);
+        }else if(!orderhandleAZSecond){
+            console.log("Segundo Handle")
+            dispatch(filterAz(recipe, false));
+            setOrderhandleAZFirts(false);
+            setOrderhandleAZSecond(true);
+        }
+        dispatch(renderRecipeCards(recipe));
+    }, [dispatch, orderhandleAZFirts, orderhandleAZSecond, recipe]);
+
     return (
         <div className={styles.divNav}>
             <ul className={styles.containerList} >
@@ -75,6 +130,12 @@ export default function Nav() {
                     <button className={styles.searchBttn}
                         onClick={handleSearch}
                     >Search</button>
+                </li>
+                <li>
+                    <button onClick={handleHealthScore} className={styles.buttonHealthScore} >HealthScore</button>
+                </li>
+                <li>
+                    <button onClick={handleAZ} className={styles.buttonHealthScore} >A-Z</button>
                 </li>
                 <li>
                     <NavLink to='/favorites' >

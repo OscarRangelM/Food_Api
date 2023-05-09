@@ -29,6 +29,7 @@ export default function Cards() {
                     image={c.image}
                     name={c.name}
                     diets={c.diets}
+                    healthScore={c.healthScore}
                 />)
             })}
         </div>
