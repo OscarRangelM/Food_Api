@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipeApi, getRecipeDB, searchRecipe, filterAz, filterScore} from '../../redux/actions/index.js';
+import { getRecipeApi, getRecipeDB, searchRecipe, filterAz, filterScore } from '../../redux/actions/index.js';
 
 
 export default function Nav() {
@@ -12,35 +12,48 @@ export default function Nav() {
 
     const [dataApi, setDataApi] = useState(false);
     const [dataBase, setDataBase] = useState(false);
-    const [searchRecipe, setSearchRecipe] = useState(false);
+    const [searchRecipeState, setSearchRecipeState] = useState(false);
+    const [recipeInput, setRecipeInput] = useState('');
 
     // Mostramos por datos de la api
     function handleApi() {
-        setSearchRecipe(false);
-        setDataBase(false);
         setDataApi(true);
     }
 
     useEffect(() => {
-        if(dataApi){
+        if (dataApi) {
             dispatch(getRecipeApi());
-        setDataApi(false);
+            setDataApi(false);
         }
     }, [dispatch, dataApi]);
 
     // Mostramos datos de la bse de datos
-    function handleDB(){
-        setSearchRecipe(false);
+    function handleDB() {
         setDataBase(true);
-        setDataApi(false);
     }
 
     useEffect(() => {
-        if(dataBase){
+        if (dataBase) {
             dispatch(getRecipeDB());
             setDataBase(false);
         }
-    },[dispatch, dataBase]);
+    }, [dispatch, dataBase]);
+
+    // Busqueda por input
+    function handleInput(event) {
+        setRecipeInput(event.target.value);
+    }
+
+    function handleSearch() {
+        setSearchRecipeState(true);
+    }
+
+    useEffect(() => {
+        if(searchRecipeState) {
+            dispatch(searchRecipe(recipeInput));
+            setSearchRecipeState(false);
+        }
+    }, [dispatch, searchRecipeState , recipeInput]);
 
     return (
         <div className={styles.divNav}>
@@ -56,18 +69,18 @@ export default function Nav() {
                         type='search'
                         placeholder='Ex: Pozole'
                         className={styles.inpSearch}
-                    // onChange={(e) => handleInput(e)}
-                    // value={dog}
+                        onChange={(e) => handleInput(e)}
+                        value={recipeInput}
                     />
                     <button className={styles.searchBttn}
-                    // onClick={handleSearch}
+                        onClick={handleSearch}
                     >Search</button>
                 </li>
                 <li>
-                        <NavLink to='/favorites' >
-                            <input type="button" value='⭐ Favorites' className={styles.favoritesBttn} />
-                        </NavLink>
-                    </li>
+                    <NavLink to='/favorites' >
+                        <input type="button" value='⭐ Favorites' className={styles.favoritesBttn} />
+                    </NavLink>
+                </li>
             </ul>
             <NavLink to='/createdog'>
                 <button className={styles.formBttn} >Create Dog</button>

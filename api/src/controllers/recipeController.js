@@ -78,8 +78,9 @@ const getRecipeName = async (name) => {
     let reciepeApiData = recipeApi.data.results;
 
     reciepeApiData = dataClean(reciepeApiData);
+    recipeWanted = reciepeApiData.filter((res) => res.name.toLowerCase().search(name.toLowerCase()) != -1 )
 
-    return [...recipeDB, ...reciepeApiData];
+    return [...recipeDB, ...recipeWanted];
 };
 const createRecipe = async (recipeBody) => {
     const { name, image, summary, healthScore, instructions, diets } = recipeBody;
