@@ -1,21 +1,54 @@
 import styles from './nav.module.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-/*
-SearchBar: un input de búsqueda para encontrar recetas por nombre.
-Botones/Opciones para filtrar por tipo de dieta, y por si su origen es de la API o de la base de datos (creados por nosotros desde el formulario).
-Botones/Opciones para ordenar tanto ascendentemente como descendentemente las recetas por orden alfabético y por "comida saludable" (health score).
-*/
+import { useDispatch, useSelector } from 'react-redux';
+import { getRecipeApi, getRecipeDB, searchRecipe, filterAz, filterScore} from '../../redux/actions/index.js';
+
 
 export default function Nav() {
+
+    const dispatch = useDispatch();
+
+    const [dataApi, setDataApi] = useState(false);
+    const [dataBase, setDataBase] = useState(false);
+    const [searchRecipe, setSearchRecipe] = useState(false);
+
+    // Mostramos por datos de la api
+    function handleApi() {
+        setSearchRecipe(false);
+        setDataBase(false);
+        setDataApi(true);
+    }
+
+    useEffect(() => {
+        if(dataApi){
+            dispatch(getRecipeApi());
+        setDataApi(false);
+        }
+    }, [dispatch, dataApi]);
+
+    // Mostramos datos de la bse de datos
+    function handleDB(){
+        setSearchRecipe(false);
+        setDataBase(true);
+        setDataApi(false);
+    }
+
+    useEffect(() => {
+        if(dataBase){
+            dispatch(getRecipeDB());
+            setDataBase(false);
+        }
+    },[dispatch, dataBase]);
+
     return (
         <div className={styles.divNav}>
             <ul className={styles.containerList} >
 
                 <li>
-                    <button className={styles.bttnApi} >api</button>
-                    <button className={styles.bttnDb} >db</button>
+                    <button className={styles.bttnApi} onClick={handleApi} >api</button>
+                    <button className={styles.bttnDb} onClick={handleDB} >db</button>
                 </li>
                 <li>
                     <input

@@ -16,9 +16,9 @@ export default function Cards() {
     useEffect(() => {
         dispatch(renderRecipeCards(recipe));
     },[dispatch, recipe]);
-    // console.log(render);
     
     const render = useSelector(state => state.renderRecipe);
+    // console.log(render);
     // console.log(render?.length);
     return (
         <div className={styles.divCards}>

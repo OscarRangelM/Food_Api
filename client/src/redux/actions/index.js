@@ -196,7 +196,11 @@ export const renderRecipeCards = (recipe, number=1) => {
             let initialNumber = number * 9;
             if(recipeAsync.length > 0) {
                 for(let i = initialNumber - 9; i < initialNumber ; i++){
-                    renderArr.push(recipeAsync[i]);
+                    if(typeof(recipeAsync[i]) !== 'undefined') {
+                        renderArr.push(recipeAsync[i])
+                    }else {
+                        break;
+                    }
                 }
             }
             // console.log(renderArr);
