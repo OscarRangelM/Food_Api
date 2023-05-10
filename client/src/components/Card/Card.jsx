@@ -42,9 +42,8 @@ export default function Card(props) {
             }
             <img src={props.image} alt={props.name} className={styles.recipeImg} />
             <h4 className={styles.recipeName} >{props.name}</h4>
-            <p>healthScore: {props.healthScore}</p>
-            <h5 className={styles.recipeDiets} >Diets:</h5>
             <div className={styles.containerDiets} >
+            <h5 className={styles.recipeDiets} >Diets:</h5>
                 {dietsProps?.map(res => {
                     return (<p className={styles.diets} >{res}</p>);
                 })

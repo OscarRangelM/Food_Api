@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    background-color: blue;
+    /* background-color: blue; */
     height: 83%;
     padding: 0 10vw;
 }

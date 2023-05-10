@@ -1,5 +1,5 @@
 .divNav{
-    background-color: antiquewhite;
+    background-color: #9e5344;
     height: 10%;
     display: flex;
     justify-content: space-between;
@@ -14,4 +14,27 @@
 
 .containerList > li {
     padding-right: 10px;
+}
+
+.bttnApi, .bttnDb, .inpSearch, .searchBttn, .inputDiets, .optionDiet, .filterBttnDiets, .buttonHealthScore, .buttonHealthScore , .favoritesBttn, .formBttn{
+    height: 25px;
+    padding: 0 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #d9ceac;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.inputDiets, .inpSearch{
+    background-color: #ffff;
+}
+
+.favoritesBttn{
+    background-color: #e1b24d;
+}
+
+.formBttn{
+    background-color: #8e2b3f;
+    color: #ffff;
 }
