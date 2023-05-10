@@ -1,14 +1,87 @@
+.divDetail{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* justify-content: center; */
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #f9ebc7;
+    flex-direction: column;
+}
+
 .cardDetail{
-    background-color: red;
     height: 80vh;
+
+    background-color: #dea75b;
+    color: #821f06;
+    font-size: larger;
+    font-weight: bold;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionBack {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #9e5344;
+    height: 50px;
+}
+
+.bttnBack{
+    border: none;
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;
+    margin-left: 20px;
+    background-color: #8e2b3f;
+    color: #ffff;
 }
 
 .detailImg{
-    width: 300px;
+    max-width: 400px;
+    margin-left: 50px;
 }
 
 .sectionInfoDetial{
-    background-color: blue;
-    height: 20vh;
-    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    color: rgb(40, 40, 40);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detailName{
+    color: black;
+    text-transform: uppercase;
+    font-size: 25px;
+}
+
+.detailId, .detailHealthScore, .detailInstructions, .detailsIdTitle{
+    color: rgb(40, 40, 40);
+    
+}
+
+.detailId{
+    margin: 10px 0;
+}
+
+.detailHealthScore{
+    margin: 10px 0;
+}
+
+.detailsIdTitle{
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.detailUl{
+    
+    list-style: none;
+    color:#821f06;
 }
