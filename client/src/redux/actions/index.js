@@ -76,12 +76,13 @@ export const createRecipe = (inputs) => {
 
     return async (dispatch) => {
         try {
+            let bodyDiets = [inputs.diets1, inputs.diets2, inputs.diets3];
             const body = {
                 name: inputs.name,
                 image: inputs.image,
                 summary: inputs.summary,
                 healthScore: inputs.healthScore,
-                diets: inputs.diets,
+                diets: bodyDiets,
                 instructions: inputs.instructions,
             }
 

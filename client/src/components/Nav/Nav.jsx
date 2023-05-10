@@ -136,7 +136,7 @@ export default function Nav() {
                     </NavLink>
                 </li>
             </ul>
-            <NavLink to='/createdog'>
+            <NavLink to='/createRecipe'>
                 <button className={styles.formBttn} >Create Dog</button>
             </NavLink>
         </div>
