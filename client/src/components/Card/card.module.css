@@ -1,51 +1,84 @@
 .divCard {
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 200px;
+    border: 2px solid #532a08;
+    border-radius: 30px 30px 10px 10px;
+    width: 220px;
     height: 300px;
-    position: relative;
-    margin: 10px 15px;
+    margin: 10px 30px;
+    overflow: hidden;
+    background-color: #dea75b;
+
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    align-content:center;
-    
 }
 
-.favButton {
-    grid-area: 5 / 5 / 6 / 6;
-}
-
-.recipeImg {
-    max-height: 110px;
+.section1{
     grid-area: 1 / 1 / 3 / 6;
+    overflow: hidden;
+    
 }
 
-.recipeName {
-    font-size: small;
-    max-width: 200px;
+    .recipeImg{
+        max-width: 220px;
+    }
+
+.section2{
     grid-area: 3 / 1 / 4 / 6;
-    /* background-color: red; */
-}
-
-.containerDiets{
-    grid-area: 4 / 1 / 5 / 6;
+    background-color: #4e1208;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.recipeDiets {
-    
-    
+    .recipeName{
+        font-size: inherit;
+        color: #cead7e;
+    }
+
+.section3{
+    grid-area: 4 / 1 / 5 / 6;
 }
 
-.bttnDetails {
+    .recipeDiets{
+        font-size: large;
+    }
+
+    .containerDiets{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* padding: 0 0px; */
+        flex-wrap: wrap;
+    }
+
+        .containerDiets > p {
+            color: #821f06;
+            margin-right: 3px;
+        }
+
+.bttnDetails{
     grid-area: 5 / 1 / 6 / 5;
-    background: grey;
-    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
-.bttnDetails>p {
-    color: white;
+    .bttnDetails > p{
+        border: 2px solid #5c4d2e;
+        border-radius: 30px;
+        padding: 5px 8px;
+        font-size:medium;
+        font-weight: bold;
+        color: #4e1208;
+    }
+
+.favButton{
+    grid-area: 5 / 5 / 6 / 6;
+    background-color: transparent;
+    border: none;
+    font-size: larger;
+    color: black;
 }

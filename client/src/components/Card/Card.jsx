@@ -31,27 +31,32 @@ export default function Card(props) {
     });
 
     const dietsProps = props.diets;
-    // console.log(props.healthScore)
 
     return (
         <div className={styles.divCard}>
+            <section className={styles.section1}>
+                <img src={props.image} alt={props.name} className={styles.recipeImg} />
+            </section>
+            <section className={styles.section2}>
+                <h4 className={styles.recipeName} >{props.name}</h4>
+            </section>
+            <section className={styles.section3}>
+                <h5 className={styles.recipeDiets} >Diets:</h5>
+                <div className={styles.containerDiets} >
+                    {dietsProps?.map(res => {
+                        return (<p className={styles.diets} >{res} |</p>);
+                    })
+                    }
+                </div>
+            </section>
+            <NavLink to={`/detail/${props.id}`} className={styles.bttnDetails}>
+                <p>More details</p>
+            </NavLink>
             {
                 favorite ?
                     (<button onClick={handleFavorite} className={styles.favButton} >⭐</button>) :
                     (<button onClick={handleFavorite} className={styles.favButton}>☆</button>)
             }
-            <img src={props.image} alt={props.name} className={styles.recipeImg} />
-            <h4 className={styles.recipeName} >{props.name}</h4>
-            <div className={styles.containerDiets} >
-            <h5 className={styles.recipeDiets} >Diets:</h5>
-                {dietsProps?.map(res => {
-                    return (<p className={styles.diets} >{res}</p>);
-                })
-                }
-            </div>
-            <NavLink to={`/detail/${props.id}`} className={styles.bttnDetails}>
-                <p>More details</p>
-            </NavLink>
         </div>
     );
 }
