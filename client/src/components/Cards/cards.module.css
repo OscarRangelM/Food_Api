@@ -1,9 +1,9 @@
 .divCards{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
-    /* background-color: blue; */
-    height: 83%;
+    background-color: #f9ebc7;
+    /* height: 83%; */
     padding: 0 10vw;
 }
