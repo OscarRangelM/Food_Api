@@ -1,4 +1,28 @@
 .divPages{
-    background-color: red;
-    height: 7%;
+    background-color: #a9b388;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.pagesList{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style:none;
+}
+
+.pagesList > li {
+    margin: 0 5px;
+}
+
+.pagesList > li > button{
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: #783d19;
+    color: #fefae0;
 }

@@ -39,7 +39,7 @@ export default function Pages() {
 
     return (
         <div className={styles.divPages}>
-            <ul>
+            <ul className={styles.pagesList}>
                 <li><button onClick={() => handleArrowLeft()}>◀</button> </li>
                 {
                     pagesNum?.map(e => (
