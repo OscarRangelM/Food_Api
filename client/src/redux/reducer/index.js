@@ -9,12 +9,14 @@ import {
     SEARCH_RECIPE_BY_ID,
     FILTER_AZ,
     FILTER_SCORE,
+    FILTER_DIETS,
     RENDER_RECIPE,
 } from '../actions/index.js';
 
 const initialState = {
     recipe: [],
     diets: [],
+    // filterDiets: [],
     recipeFavorites: [],
     recipeDetail: {},
     renderRecipe: [],
@@ -81,6 +83,12 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case FILTER_SCORE:
+            return {
+                ...state,
+                recipe: action.payload,
+            }
+            
+        case FILTER_DIETS:
             return {
                 ...state,
                 recipe: action.payload,

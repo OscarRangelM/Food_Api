@@ -10,6 +10,7 @@ export default function Nav() {
 
     const dispatch = useDispatch();
     const recipe = useSelector(state => state.recipe);
+    const dietsRecipe = useSelector(state => state.diets);
 
     const [dataApi, setDataApi] = useState(false);
     const [dataBase, setDataBase] = useState(false);
@@ -17,6 +18,8 @@ export default function Nav() {
     const [recipeInput, setRecipeInput] = useState('');
     const [healthScoreFirst, setHealthScoreFirst] = useState(false);
     const [orderhandleAZFirts, setOrderhandleAZFirts] = useState(false);
+    const [inputDiets, setInputDiets] = useState('');
+    const [dietFirst, setDietFirst] = useState(false);
 
     // Mostramos por datos de la api
     function handleApi() {
@@ -52,28 +55,25 @@ export default function Nav() {
     }
 
     useEffect(() => {
-        if(searchRecipeState) {
+        if (searchRecipeState) {
             dispatch(searchRecipe(recipeInput));
             setSearchRecipeState(false);
         }
-    }, [dispatch, searchRecipeState , recipeInput]);
+    }, [dispatch, searchRecipeState, recipeInput]);
 
     // Ordenamiento de handleHealthScore
     function handleHealthScore() {
-        if(!healthScoreFirst){
+        if (!healthScoreFirst) {
             setHealthScoreFirst(true);
-        }else{
+        } else {
             setHealthScoreFirst(false);
         }
-        console.log("HealthScore")
     }
 
     useEffect(() => {
-        if(healthScoreFirst){
-            console.log("primer Handle")
-            dispatch(filterScore(recipe,true));
-        }else {
-            console.log("Segundo Handle")
+        if (healthScoreFirst) {
+            dispatch(filterScore(recipe, true));
+        } else {
             dispatch(filterScore(recipe, false));
         }
         dispatch(renderRecipeCards(recipe));
@@ -81,27 +81,47 @@ export default function Nav() {
 
     // Ordenamiento por orden alfabetico
     function handleAZ() {
-        if(!orderhandleAZFirts){
+        if (!orderhandleAZFirts) {
             setOrderhandleAZFirts(true);
-        }else{
+        } else {
             setOrderhandleAZFirts(false);
         }
-        console.log("handleAZ")
     }
 
     useEffect(() => {
-        if(orderhandleAZFirts){
-            console.log("primer Handle")
-            dispatch(filterAz(recipe,true));
+        if (orderhandleAZFirts) {
+            dispatch(filterAz(recipe, true));
             dispatch(renderRecipeCards(recipe));
-        }else{
-            console.log("Segundo Handle")
+        } else {
             dispatch(filterAz(recipe, false));
             dispatch(renderRecipeCards(recipe));
         }
-        
+
     }, [dispatch, orderhandleAZFirts, recipe]);
     // console.log(recipe);
+
+    // filtrado por tipo de dieta
+    function handleChange() {
+        setDietFirst(true);
+    }
+
+    function selectDiet(e) {
+        setInputDiets(e.target.value);
+    }
+
+    useEffect(() => {
+        if (dietFirst) {
+            if (inputDiets === 'All' || inputDiets === '') {
+                dispatch(renderRecipeCards(recipe))
+            } else {
+                const recipeAsync = recipe;
+                let arrDiets = recipeAsync.filter(obj => obj.diets.includes(inputDiets));
+                setDietFirst(false);
+                dispatch(renderRecipeCards(arrDiets))
+            }
+        }
+    }, [dietFirst, inputDiets, recipe, dispatch]);
+
 
     return (
         <div className={styles.divNav}>
@@ -123,6 +143,17 @@ export default function Nav() {
                     <button className={styles.searchBttn}
                         onClick={handleSearch}
                     >Search</button>
+                </li>
+                <li>
+                    <select type='select' placeholder='Diets' name="diets" className={styles.inputDiets} onChange={selectDiet} value={inputDiets}>
+                        <option>All</option>
+                        {dietsRecipe?.map(c => {
+                            return (
+                                <option value={c.name} className={styles.optionDiet} key={c.id} >{c.name}</option>
+                            )
+                        })}
+                    </select>
+                    <button onClick={handleChange} className={styles.filterBttnDiets} >🍽️</button>
                 </li>
                 <li>
                     <button onClick={handleHealthScore} className={styles.buttonHealthScore} >HealthScore</button>

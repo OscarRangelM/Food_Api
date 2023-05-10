@@ -10,6 +10,7 @@ export const SEARCH_RECIPE = 'SEARCH_RECIPE';
 export const SEARCH_RECIPE_BY_ID = 'SEARCH_RECIPE_BY_ID';
 export const FILTER_AZ = 'FILTER_AZ';
 export const FILTER_SCORE = 'FILTER_SCORE';
+export const FILTER_DIETS = 'FILTER_DIETS';
 export const RENDER_RECIPE = 'RENDER_RECIPE';
 
 export const getRecipeApi = () => {
@@ -191,18 +192,41 @@ export const filterScore = (recipe, value) => {
     };
 };
 
-export const renderRecipeCards = (recipe, number=1) => {
+//FILTER_DIETS
+export const filterDietsFunction = (recipe, value='All') => {
+    return async (dispatch) => {
+        // const recipeAsync = await recipe;
+
+        // // console.log(value === 'All'|| value === '');
+        // // console.log(recipeAsync);
+        // let arrDiets = recipeAsync.filter(obj => obj.diets.includes(value));
+        // // console.log(arrDiets);
+
+        // // if (value === 'All' || value === '') {
+        // //     return dispatch({
+        // //         type: FILTER_DIETS,
+        // //         payload: recipe
+        // //     })
+        // // }
+        // // return dispatch({
+        // //     type: FILTER_DIETS,
+        // //     payload: arrDiets
+        // // })
+    }
+}
+
+export const renderRecipeCards = (recipe, number = 1) => {
     return async (dispatch) => {
         try {
             const recipeAsync = await recipe;
             console.log("Se ejecuto el render");
             let renderArr = [];
             let initialNumber = number * 9;
-            if(recipeAsync?.length > 0) {
-                for(let i = initialNumber - 9; i < initialNumber ; i++){
-                    if(typeof(recipeAsync[i]) !== 'undefined') {
+            if (recipeAsync?.length > 0) {
+                for (let i = initialNumber - 9; i < initialNumber; i++) {
+                    if (typeof (recipeAsync[i]) !== 'undefined') {
                         renderArr.push(recipeAsync[i])
-                    }else {
+                    } else {
                         break;
                     }
                 }
