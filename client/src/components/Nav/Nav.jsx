@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipeApi, getRecipeDB, searchRecipe, filterAz, filterScore, renderRecipeCards } from '../../redux/actions/index.js';
+import { getRecipeApi, getRecipeDB, searchRecipe, filterAz, filterScore, renderRecipeCards, filterDietsFunction } from '../../redux/actions/index.js';
 
 
 export default function Nav() {
@@ -98,7 +98,6 @@ export default function Nav() {
         }
 
     }, [dispatch, orderhandleAZFirts, recipe]);
-    // console.log(recipe);
 
     // filtrado por tipo de dieta
     function handleChange() {
@@ -111,14 +110,9 @@ export default function Nav() {
 
     useEffect(() => {
         if (dietFirst) {
-            if (inputDiets === 'All' || inputDiets === '') {
-                dispatch(renderRecipeCards(recipe))
-            } else {
-                const recipeAsync = recipe;
-                let arrDiets = recipeAsync.filter(obj => obj.diets.includes(inputDiets));
-                setDietFirst(false);
-                dispatch(renderRecipeCards(arrDiets))
-            }
+            dispatch(filterDietsFunction(inputDiets));
+            // dispatch(renderRecipeCards(recipe));
+            setDietFirst(false);
         }
     }, [dietFirst, inputDiets, recipe, dispatch]);
 

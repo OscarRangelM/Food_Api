@@ -193,25 +193,24 @@ export const filterScore = (recipe, value) => {
 };
 
 //FILTER_DIETS
-export const filterDietsFunction = (recipe, value='All') => {
+export const filterDietsFunction = (value='All') => {
     return async (dispatch) => {
-        // const recipeAsync = await recipe;
-
-        // // console.log(value === 'All'|| value === '');
-        // // console.log(recipeAsync);
-        // let arrDiets = recipeAsync.filter(obj => obj.diets.includes(value));
-        // // console.log(arrDiets);
-
-        // // if (value === 'All' || value === '') {
-        // //     return dispatch({
-        // //         type: FILTER_DIETS,
-        // //         payload: recipe
-        // //     })
-        // // }
-        // // return dispatch({
-        // //     type: FILTER_DIETS,
-        // //     payload: arrDiets
-        // // })
+        console.log(value)
+        const recipeAsync = await axios.get('http://localhost:3001/recipes');
+        const recipeData = recipeAsync.data;
+        console.log(recipeData);
+        
+        if (value !== 'All' || value !== '') {
+            let arrDiets = recipeData.filter(obj => obj.diets.includes(value));
+            return dispatch({
+                type: FILTER_DIETS,
+                payload: arrDiets
+            })
+        }
+        return dispatch({
+            type: FILTER_DIETS,
+            payload: recipeData
+        })
     }
 }
 
