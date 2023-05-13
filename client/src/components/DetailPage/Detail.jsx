@@ -12,6 +12,7 @@ export default function Detail() {
     const state = useSelector(state => state.recipeDetail);
 
     // const diets = state.diets;
+    console.log(detailId);
 
     useEffect(() => {
         dispatch(searchRecipeById(detailId));

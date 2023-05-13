@@ -76,6 +76,19 @@ const getIdRecipe = async (id, source) => {
         return recipeCleanData;
     }
 
+    let recipeDB = await Recipe.findAll({
+        where: {
+            id: id,
+        },
+        include: {
+            model: Diets,
+            attributes: ['name'],
+        }
+    });
+
+    recipeDB = dataDB(recipeDB);
+    return recipeDB;
+
 
 };
 const getRecipeName = async (name) => {
