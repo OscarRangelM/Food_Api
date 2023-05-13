@@ -10,6 +10,8 @@ export default function Form() {
     const state = useSelector(state => state.diets);
     const dispatch = useDispatch();
 
+    // const [validacionInp, setValidacionInp] = useState(false);
+
     const [inputs, setInputs] = useState({
         name: '',
         image: '',
@@ -43,23 +45,38 @@ export default function Form() {
         );
     }
 
+    // en una semana volvemos a presentar con las correcciones necesarias.
+    // En el formulario que no se sete en caso de que no se valide correctamente.
+
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(createRecipe(inputs));
-        setInputs({
-            name: '',
-            image: '',
-            summary: '',
-            healthScore: 0,
-            instructions: '',
-            diets1: '',
-            diets2: '',
-            diets3: '',
-        })
+        const err = validate(inputs);
+        console.log(Object.keys(err));
+        // console.log(err === {});
+        if (Object.keys(err).length === 0) {
+            dispatch(createRecipe(inputs));
+            setInputs({
+                name: '',
+                image: '',
+                summary: '',
+                healthScore: 0,
+                instructions: '',
+                diets1: '',
+                diets2: '',
+                diets3: '',
+            })
+            alert("La receta fue creada");
+        }else{
+            alert("Faltan datos");
+        }
+
     }
+
+    
 
     return (
         <div className={styles.divForm}>
+            
             <div className={styles.sectionBack} >
                 <NavLink to='../home' >
                     <button className={styles.bttnBack} >◀ Home</button>

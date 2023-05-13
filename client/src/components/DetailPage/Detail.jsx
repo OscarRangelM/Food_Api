@@ -11,7 +11,7 @@ export default function Detail() {
     const { detailId } = useParams();
     const state = useSelector(state => state.recipeDetail);
 
-    const diets = state.diets;
+    // const diets = state.diets;
 
     useEffect(() => {
         dispatch(searchRecipeById(detailId));
@@ -36,7 +36,7 @@ export default function Detail() {
                     <p className={styles.detailInstructions} >{state.instructions}</p>
                     <p className={styles.detailsIdTitle}>Diets:</p>
                     <ul className={styles.detailUl}>
-                        {diets?.map(result => {
+                        {state.diets?.map(result => {
                             return (<li className={styles.detailListElement}>{result}</li>);
                         })}
                     </ul>

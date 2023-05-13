@@ -14,6 +14,22 @@ const dataClean = (data) => {
         }
     })
 }
+
+const dataDB = (array) =>{
+    return array.map((res) => {
+        const diets = res.Diets.map(e => e.name);
+
+        return {
+            id: res.id,
+            name: res.name.toLowerCase(),
+            image: res.image,
+            summary: res.summary,
+            healthScore: res.healthScore,
+            instructions: res.instructions,
+            diets: diets,
+        }
+    })
+}
 // instructions
 const dataCleanId = (data) => {
     return data.map((res) => {
@@ -43,7 +59,9 @@ const getRecipeController = async () => {
 
     reciepeApiData = dataClean(reciepeApiData);
 
-    return [...reciepDB, ...reciepeApiData];
+    const recipeCDB = dataDB(reciepDB);
+
+    return [...recipeCDB, ...reciepeApiData];
 
 };
 const getIdRecipe = async (id, source) => {
