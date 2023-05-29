@@ -51,8 +51,7 @@ export default function Form() {
     function handleSubmit(e) {
         e.preventDefault();
         const err = validate(inputs);
-        console.log(Object.keys(err));
-        // console.log(err === {});
+        // console.log(Object.keys(err));
         if (Object.keys(err).length === 0) {
             dispatch(createRecipe(inputs));
             setInputs({
@@ -66,17 +65,17 @@ export default function Form() {
                 diets3: '',
             })
             alert("La receta fue creada");
-        }else{
+        } else {
             alert("Faltan datos");
         }
 
     }
 
-    
+
 
     return (
         <div className={styles.divForm}>
-            
+
             <div className={styles.sectionBack} >
                 <NavLink to='../home' >
                     <button className={styles.bttnBack} >◀ Home</button>
@@ -89,7 +88,10 @@ export default function Form() {
                 {errors.name && <p>{errors.name}</p>}
 
                 <label htmlFor="image">Image*</label>
-                <input type="text" className={styles.inputImage} name="image" onChange={handleChange} value={inputs.image} />
+                <input
+                    type="text" className={styles.inputImage}
+                    name="image"
+                    onChange={handleChange} value={inputs.image} />
                 {errors.image && <p>{errors.image}</p>}
 
                 <label htmlFor="summary">Summary*</label>

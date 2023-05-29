@@ -32,6 +32,10 @@ export default function Pages() {
     }
 
     useEffect(() =>{
+        setNumPage(1);
+    },[recipe]);
+
+    useEffect(() =>{
         if(numPage > 0 && numPage <= pages){
             dispatch(renderRecipeCards(recipe, numPage));
         }
@@ -50,6 +54,7 @@ export default function Pages() {
                 }
                 <li><button onClick={() => handleArrowRight()}>▶</button> </li>
             </ul>
+            <p>Estamos en la pagina: {numPage}</p>
         </div>
     );
 }
